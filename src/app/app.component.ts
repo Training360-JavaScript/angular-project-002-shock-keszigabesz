@@ -1,6 +1,6 @@
+import { UserService } from './service/user.service';
 import { Component } from '@angular/core';
 import { User } from './model/user';
-import { UserService } from './service/user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +10,22 @@ import { UserService } from './service/user.service';
 export class AppComponent {
   title = 'The good Angular programmer';
 
+  dataList: UserService = new UserService();
+  userArray: User[] = this.dataList.list;
   currentUser: User = new User;
 
-  constructor() {}
+  constructor() { }
+
+  selectUser(user: User): void {
+    this.currentUser = user;
+  }
+
+  updateUser(user: User): void {
+    this.dataList.updateUser(user);
+  }
+
+  deleteUser(user: User): void {
+    this.dataList.removeUser(user);
+  }
 
 }
